@@ -1,13 +1,12 @@
 package main
 
 import (
-	"database/sql"
 	"flag"
-	"fmt"
 	"log"
 	"net/http"
 	"os"
 
+	"github.com/jmoiron/sqlx"
 	_ "github.com/lib/pq"
 	"github.com/vbrenister/snippetbox/internal/models"
 )
@@ -29,7 +28,7 @@ func main() {
 	infoLog := log.New(os.Stdout, "INFO\t", log.Ldate|log.Ltime)
 	errorLog := log.New(os.Stderr, "ERROR\t", log.Ldate|log.Ltime|log.Lshortfile)
 
-	db, err := openDB(*dsn)
+	db, err := sqlx.Connect("postgres", *dsn)
 	if err != nil {
 		errorLog.Fatal(err)
 	}
@@ -39,7 +38,7 @@ func main() {
 	app := &application{
 		errorLog: errorLog,
 		infoLog:  infoLog,
-		snippets: &models.SnippetModel{DB: db},
+		snippets: models.NewSnipperModel(db),
 	}
 
 	srv := &http.Server{
@@ -52,18 +51,4 @@ func main() {
 
 	err = srv.ListenAndServe()
 	errorLog.Fatal(err)
-}
-
-func openDB(dsn string) (*sql.DB, error) {
-	db, err := sql.Open("postgres", dsn)
-
-	if err != nil {
-		return nil, fmt.Errorf("could not create database connection pool: %w", err)
-	}
-
-	if err = db.Ping(); err != nil {
-		return nil, fmt.Errorf("could not connect to database: %w", err)
-	}
-
-	return db, nil
 }
