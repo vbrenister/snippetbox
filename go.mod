@@ -3,6 +3,8 @@ module github.com/vbrenister/snippetbox
 go 1.20
 
 require (
+	github.com/alexedwards/scs/postgresstore v0.0.0-20230327161757-10d4299e3b24
+	github.com/alexedwards/scs/v2 v2.5.1
 	github.com/go-playground/form/v4 v4.2.0
 	github.com/golang-migrate/migrate/v4 v4.15.2
 	github.com/jmoiron/sqlx v1.3.5
@@ -23,8 +25,6 @@ require (
 	github.com/Azure/go-autorest/logger v0.2.1 // indirect
 	github.com/Azure/go-autorest/tracing v0.6.0 // indirect
 	github.com/ClickHouse/clickhouse-go v1.4.3 // indirect
-	github.com/alexedwards/scs/postgresstore v0.0.0-20230327161757-10d4299e3b24 // indirect
-	github.com/alexedwards/scs/v2 v2.5.1 // indirect
 	github.com/apache/arrow/go/arrow v0.0.0-20211013220434-5962184e7a30 // indirect
 	github.com/aws/aws-sdk-go v1.17.7 // indirect
 	github.com/aws/aws-sdk-go-v2 v1.9.2 // indirect
