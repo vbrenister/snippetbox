@@ -13,5 +13,8 @@ createdb:
 
 dropdb:
 	@docker stop snippets-db && docker rm snippets-db 
+
+test:
+	@go test -v ./...
 	
-.PHONY: server migrateup migratedown createdb dropdb
+.PHONY: server migrateup migratedown createdb dropdb test

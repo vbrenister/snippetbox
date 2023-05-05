@@ -10,10 +10,13 @@
 - https://github.com/julienschmidt/httprouter - HTTP Routing
 - https://github.com/justinas/alice - HTTP Middleware chaining
 - https://github.com/lib/pq - Postgres database driver
-
+- https://github.com/justinas/nosurf - CSRF Token management
+- https://golang.org/x/crypto - Password hashing
 
 ## TLS Certificates
 
 For local development you can generate the certificates using following command:
 
 > go run /usr/local/go/src/crypto/tls/generate_cert.go --rsa-bits=2048 --host=localhost
+
+Include generated files into `tls/` folder of the root directory
